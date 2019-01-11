@@ -41,18 +41,21 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Bediening.cs" />
-    <Compile Include="Bullet.cs" />
-    <Compile Include="Camera.cs" />
-    <Compile Include="Enemy.cs" />
-    <Compile Include="Game1.cs" />
-    <Compile Include="Map.cs" />
-    <Compile Include="Player.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Core\Bediening.cs" />
+    <Compile Include="Objects\Bullet.cs" />
+    <Compile Include="Core\Camera.cs" />
+    <Compile Include="Characters\Enemy.cs" />
+    <Compile Include="Engine\Game1.cs" />
+    <Compile Include="Objects\Key.cs" />
+    <Compile Include="Core\Map.cs" />
+    <Compile Include="Characters\Player.cs" />
+    <Compile Include="Objects\ObjectMother.cs" />
+    <Compile Include="Objects\Prisoner.cs" />
+    <Compile Include="Engine\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Collission.cs" />
-    <Compile Include="Spike.cs" />
-    <Compile Include="Tiles.cs" />
+    <Compile Include="Core\Collission.cs" />
+    <Compile Include="Objects\Spike.cs" />
+    <Compile Include="Objects\Tiles.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

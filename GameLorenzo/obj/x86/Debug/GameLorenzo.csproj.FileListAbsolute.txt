@@ -56,3 +56,7 @@ D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\obj\x86\Debug
 D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\obj\x86\Debug\GameLorenzo.csproj.CopyComplete
 D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\obj\x86\Debug\GameLorenzo.exe
 D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\obj\x86\Debug\GameLorenzo.pdb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\Spike.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\key.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\locked.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\unlocked.xnb

@@ -10,15 +10,12 @@ namespace GameLorenzo
 {
     class Bullet
     {
-        
 
         public Rectangle rectangle;
         public Texture2D bullet;
         public Vector2 Velocity, Position, Origin;
         public int Speed;
         public Enemy enemy;
-
-
 
         public bool IsVisible;
 

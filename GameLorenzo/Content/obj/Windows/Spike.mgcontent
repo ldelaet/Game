@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/bullet.png</SourceFile>
-  <SourceTime>2018-12-11T00:40:40.1183576+01:00</SourceTime>
-  <DestFile>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/bin/Windows/bullet.xnb</DestFile>
-  <DestTime>2019-01-11T18:26:46.8156077+01:00</DestTime>
+  <SourceFile>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/Spike.png</SourceFile>
+  <SourceTime>2019-01-11T13:44:34.0728612+01:00</SourceTime>
+  <DestFile>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/bin/Windows/Spike.xnb</DestFile>
+  <DestTime>2019-01-11T18:26:46.9422672+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -24,7 +24,9 @@ namespace GameLorenzo
         private float bulletDelay;
         public List<Bullet> Bullets;
         Vector2 origin;
+        int lives = 5;
 
+        public bool Die { get; set; } = false;
         public Vector2 Postion
         {
             get { return position; }
@@ -57,7 +59,12 @@ namespace GameLorenzo
             if (velocity.Y < 10)
                 velocity.Y += 0.4f;
             Input(gameTime);
-
+            if (Die)
+            {
+                position = new Vector2(100,100);
+                lives--;
+                Die = false;
+            }
            
 
         }
