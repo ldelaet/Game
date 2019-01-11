@@ -14,7 +14,7 @@ namespace GameLorenzo
         Texture2D texture, healthTexture;
         Rectangle rectangle, healthRectangle;
         Vector2 position, Velocity, origin, HealthPosition;
-        int xPatrolbegin, xPatrolEnd, playerDistance;
+        int playerDistance, playerDistanceY;
         float rotation = 0f;
         bool isAbove = false, HasJumped = false;
 
@@ -28,22 +28,22 @@ namespace GameLorenzo
         }
 
 
-        public int Health { get; set; } = 1;
+        public int Health { get; set; } = 10;
 
-        public Enemy(Texture2D newTexture, Vector2 newPosition, int patrolbegin, int patrolend)
+        public Enemy(Texture2D newTexture, Vector2 newPosition)
         {
             texture = newTexture;
             position = newPosition;
-            xPatrolbegin = patrolbegin;
-            xPatrolEnd = patrolbegin;
             
         }
 
         public void Update(Vector2 newPosition)
         {
+
             position += Velocity;
             origin = new Vector2(100 / 2, 100 / 2);
             playerDistance = (int)newPosition.X - (int)position.X;
+            playerDistanceY = (int)newPosition.Y - (int)position.Y;
             if ((int)newPosition.Y > (int)position.Y) isAbove = true;
             else isAbove = false;
             AI();
@@ -64,16 +64,19 @@ namespace GameLorenzo
         {
             if (Velocity.Y < 10)
                 Velocity.Y += 0.4f;
-
-            if (playerDistance < 400 && playerDistance > 0)
+            if (playerDistanceY < 100 && playerDistanceY > -100)
             {
-                Velocity.X = 2f;
+                if (playerDistance < 600 && playerDistance > 0)
+                {
+                    Velocity.X = 2f;
+                }
+                else if (playerDistance > -600 && playerDistance < 0)
+                {
+                    Velocity.X = -2f;
+                }
+                else Velocity.X = 0;
             }
-            else if (playerDistance > -400 && playerDistance < 0)
-            {
-                Velocity.X = -2f;
-            }
-            else Velocity.X = 0;
+            else Velocity.X = 0; ;
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -117,7 +120,7 @@ namespace GameLorenzo
         }
 
         private void Jump() {
-            if (!isAbove && !HasJumped)
+            if (!isAbove || !HasJumped)
             {
                 position.Y -= 5f;
                 Velocity.Y = -9f;

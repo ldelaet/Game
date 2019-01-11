@@ -4,9 +4,9 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/School/Game Developement/Game 2018/GameLorenzo/GameLorenzo/Content/Player.png</File>
-    <File>D:/School/Game Developement/Game 2018/GameLorenzo/GameLorenzo/Content/Tile1.jpg</File>
-    <File>D:/School/Game Developement/Game 2018/GameLorenzo/GameLorenzo/Content/Tile2.jpg</File>
-    <File>D:/School/Game Developement/Game 2018/GameLorenzo/GameLorenzo/Content/bullet.png</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/Player.png</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/Tile1.jpg</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/Tile2.jpg</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/bullet.png</File>
   </SourceFiles>
 </SourceFileCollection>

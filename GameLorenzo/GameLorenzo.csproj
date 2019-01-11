@@ -51,6 +51,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Collission.cs" />
+    <Compile Include="Spike.cs" />
     <Compile Include="Tiles.cs" />
   </ItemGroup>
   <ItemGroup>

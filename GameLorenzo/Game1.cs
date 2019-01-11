@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 
 namespace GameLorenzo
 {
@@ -12,12 +13,15 @@ namespace GameLorenzo
         Map map;
         MapLevelGenerator mapGen;
         Player player;
-        Enemy enemy;
+        List<Enemy> enemies = new List<Enemy>();
         Camera camera;
         Texture2D enemyTexture;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
             Content.RootDirectory = "Content";
         }
         protected override void Initialize()
@@ -26,7 +30,10 @@ namespace GameLorenzo
             mapGen = new MapLevelGenerator();
             player = new Player();
             enemyTexture = Content.Load<Texture2D>("Player");
-            enemy = new Enemy(enemyTexture, new Vector2(500, 300), 100, 200);
+            enemies.Add(new Enemy(enemyTexture, new Vector2(310, 300)));
+            enemies.Add(new Enemy(enemyTexture, new Vector2(500, 300)));
+            enemies.Add(new Enemy(enemyTexture, new Vector2(700, 300)));
+            enemies.Add(new Enemy(enemyTexture, new Vector2(900, 300)));
             camera = new Camera(GraphicsDevice.Viewport);
             base.Initialize();
         }
@@ -47,6 +54,7 @@ namespace GameLorenzo
 
             //Class updates
             player.Update(gameTime);
+            foreach (Enemy enemy in enemies)
             enemy.Update(player.Postion);
 
             //colissions and intersects
@@ -61,7 +69,8 @@ namespace GameLorenzo
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.matrix);
             map.Draw(spriteBatch);
             player.Draw(spriteBatch);
-            enemy.Draw(spriteBatch);
+            foreach (Enemy enemy in enemies)
+                enemy.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }
@@ -77,7 +86,8 @@ namespace GameLorenzo
             foreach (CollisionTiles tile in map.CollisionTiles)
             {
                 player.Collision(tile.Rectangle, map.Width, map.Height);
-                enemy.Collision(tile.Rectangle, map.Width, map.Height);
+                foreach (Enemy enemy in enemies)
+                    enemy.Collision(tile.Rectangle, map.Width, map.Height);
                 foreach (Bullet b in player.Bullets.ToArray())
                 {
                     if (b.rectangle.Intersects(tile.Rectangle))
@@ -87,20 +97,29 @@ namespace GameLorenzo
                         player.Bullets.Remove(b);
 
                     }
-                    else if (b.rectangle.Intersects(enemy.Rectangle) && enemy.IsVisible && b.enemy != enemy)
+                    
+                    
+                    
+                }
+                camera.Update(player.Postion, map.Width, map.Height);
+            }
+            foreach (Enemy enemy in enemies)
+            {
+                foreach (Bullet b in player.Bullets.ToArray())
+                {
+
+                    if (b.rectangle.Intersects(enemy.Rectangle) && enemy.IsVisible && b.enemy != enemy)
                     {
                         RemoveBullet(b);
                         enemy.Damage();
                         b.enemy = enemy;
                     }
                 }
-                camera.Update(player.Postion, map.Width, map.Height);
-            }
-
-            if (player.rectangle.Intersects(enemy.Rectangle) && enemy.IsVisible)
-            {
-                player.Postion = new Vector2(100, 100);
-                enemy = new Enemy(enemyTexture, new Vector2(500, 300), 100, 200);
+                if (player.rectangle.Intersects(enemy.Rectangle) && enemy.IsVisible)
+                {
+                    player.Postion = new Vector2(100, 100);
+                    
+                }
             }
         }
 
