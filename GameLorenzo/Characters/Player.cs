@@ -1,4 +1,5 @@
-﻿using GameLorenzo.Engine;
+﻿using GameLorenzo.Characters;
+using GameLorenzo.Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,11 +15,11 @@ namespace GameLorenzo
     class Player
     {
         //classes
-        Game1 game;
         public Bediening bediening;
         public Enemy enemy;
         private Texture2D texture, bulletTexture;
         private Vector2 position = new Vector2(100, 100);
+        private Vector2 spawnPosition = new Vector2(100, 100);
         private Vector2 velocity;
         public Rectangle rectangle;
         private bool HasJumped = false;
@@ -26,12 +27,15 @@ namespace GameLorenzo
         public List<Bullet> Bullets;
         Vector2 origin;
         int lives = 5;
+        Values values = new Values();
         //animations
         protected AnimationManager _animationManager;
         protected Dictionary<string, Animation> _animations;
 
 
+
         public bool Die { get; set; } = false;
+        public bool NextLevel { get; set; } = false;
         public Vector2 Postion
         {
             get { return position; }
@@ -43,6 +47,7 @@ namespace GameLorenzo
 
         //Constructors
         public Player(Dictionary<string, Animation> animations) {
+            
             bediening = new BedieningPijltjes();
             Bullets = new List<Bullet>();
             bulletDelay = 5;
@@ -61,6 +66,7 @@ namespace GameLorenzo
 
         public void Load(ContentManager Content)
         {
+             
             texture = Content.Load<Texture2D>("Player");
             bulletTexture = Content.Load<Texture2D>("bullet");
             
@@ -76,10 +82,23 @@ namespace GameLorenzo
             Input(gameTime);
             if (Die)
             {
-                position = new Vector2(100, 100);
+                if (values.level == 1)
+                {
+                    position = new Vector2(100, 100);
+                    
+                }
+                else if (values.level == 2) {
+                    position = new Vector2(500, 1680);
+                }
                 lives--;
                 Die = false;
+
             }
+            if (NextLevel) {
+                spawnPosition = new Vector2(500, 1680);
+                position = spawnPosition;
+            }
+
 
 
             //animations

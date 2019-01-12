@@ -71,3 +71,9 @@ D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x
 D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\ShootRight.xnb
 D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\ShootWalkRight.xnb
 D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\background1.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\Cop.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\EnemyIdle.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\EnemyWalkingRight.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\EnemyWalkingLeft.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\Tile3.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\Tile4.xnb

@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Characters\Background.cs" />
+    <Compile Include="Characters\Values.cs" />
     <Compile Include="Core\Bediening.cs" />
     <Compile Include="Engine\Animation.cs" />
     <Compile Include="Engine\AnimationManager.cs" />

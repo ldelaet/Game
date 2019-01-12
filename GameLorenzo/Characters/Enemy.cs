@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameLorenzo.Engine;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,25 @@ namespace GameLorenzo
         Player player;
         Texture2D texture, healthTexture;
         Rectangle rectangle, healthRectangle;
-        public Vector2 position, Velocity, origin, HealthPosition;
+        public Vector2 Velocity, origin, HealthPosition;
+        //animations
+        protected AnimationManager _animationManager;
+        protected Dictionary<string, Animation> _animations;
         int playerDistance, playerDistanceY;
         float rotation = 0f;
         bool isAbove = false, HasJumped = false;
         public bool Collides { get; set; }
+        private Vector2 _position;
+        public Vector2 postion
+        {
+            get { return _position; }
+            set
+            {
+                _position = value;
+                if (_animationManager != null) _animationManager.Position = _position;
+            }
+
+        }
 
         public bool IsVisible { get; set; } = true;
 
@@ -30,24 +45,32 @@ namespace GameLorenzo
 
 
         public int Health { get; set; } = 10;
+        public Enemy(Texture2D newTexture, Vector2 newPosition, Dictionary<string, Animation> animations)
+        {
+            texture = newTexture;
+            _position = newPosition;
+            _animations = animations;
+            _animationManager = new AnimationManager(_animations.First().Value);
+        }
 
         public Enemy(Texture2D newTexture, Vector2 newPosition)
         {
             texture = newTexture;
-            position = newPosition;
+            _position = newPosition;
             
         }
 
-        public void Update(Vector2 newPosition)
+        public void Update(Vector2 newPosition, GameTime gameTime)
         {
 
-            position += Velocity;
+            _position += Velocity;
             origin = new Vector2(100 / 2, 100 / 2);
-            playerDistance = (int)newPosition.X - (int)position.X;
-            playerDistanceY = (int)newPosition.Y - (int)position.Y;
-            if ((int)newPosition.Y > (int)position.Y) isAbove = true;
+            playerDistance = (int)newPosition.X - (int)_position.X;
+            playerDistanceY = (int)newPosition.Y - (int)_position.Y;
+            if ((int)newPosition.Y > (int)_position.Y) isAbove = true;
             else isAbove = false;
             AI();
+            SetAnimations(gameTime);
             
 
             
@@ -81,16 +104,27 @@ namespace GameLorenzo
                 else Velocity.X = 0; ;
             
         }
+        private void SetAnimations(GameTime gameTime)
+        {
+            if (Velocity.X > 0)
+                _animationManager.Play(_animations["EnemyWalkingRight"]);
+            else if (Velocity.X < 0)
+                _animationManager.Play(_animations["EnemyWalkingLeft"]);
+            else if (Velocity.X == 0)
+                _animationManager.Play(_animations["EnemyIdle"]); 
+            _animationManager.Update(gameTime);
+        }
         public void Draw(SpriteBatch spriteBatch)
         {
-            rectangle = new Rectangle((int)position.X, (int)position.Y, 70, 70);
-
-            if (IsVisible)
-            {
-                if (Velocity.X < 0)
-                    spriteBatch.Draw(texture, rectangle, null, Color.White, rotation, origin, SpriteEffects.FlipHorizontally, 0);
-                else spriteBatch.Draw(texture, rectangle, null, Color.White, rotation, origin, SpriteEffects.None, 0);
-            }
+            rectangle = new Rectangle((int)_position.X, (int)_position.Y, 70, 70);
+            if (_animationManager != null && IsVisible)
+                _animationManager.Draw(spriteBatch, postion);
+            //if (IsVisible)
+            //{
+            //    if (Velocity.X < 0)
+            //        spriteBatch.Draw(texture, rectangle, null, Color.White, rotation, origin, SpriteEffects.FlipHorizontally, 0);
+            //    else spriteBatch.Draw(texture, rectangle, null, Color.White, rotation, origin, SpriteEffects.None, 0);
+            //}
         }
 
         public void Collision(Rectangle newRectangle, int x, int y)
@@ -104,28 +138,28 @@ namespace GameLorenzo
 
             if (rectangle.isOnLeft(newRectangle))
             {
-                position.X = newRectangle.X + (newRectangle.Width + 1);
+                _position.X = newRectangle.X + (newRectangle.Width + 1);
                 Jump();
             }
             if (rectangle.isOnRight(newRectangle))
             {
-                position.X = newRectangle.X - (rectangle.Width + 1);
+                _position.X = newRectangle.X - (rectangle.Width + 1);
                 Jump();
             }
             if (rectangle.isOnBottomOf(newRectangle))
             {
                 Velocity.Y = 5f;
             }
-            if (position.X < 0) position.X = 0;
-            if (position.X > x - rectangle.Width) position.X = x - rectangle.Width;
-            if (position.Y < 0) Velocity.Y = 1f;
-            if (position.Y > y - rectangle.Height) position.Y = y - rectangle.Height;
+            if (_position.X < 0) _position.X = 0;
+            if (_position.X > x - rectangle.Width) _position.X = x - rectangle.Width;
+            if (_position.Y < 0) Velocity.Y = 1f;
+            if (_position.Y > y - rectangle.Height) _position.Y = y - rectangle.Height;
         }
 
         private void Jump() {
             if (!isAbove || !HasJumped)
             {
-                position.Y -= 5f;
+                _position.Y -= 5f;
                 Velocity.Y = -9f;
                 HasJumped = true;
             }

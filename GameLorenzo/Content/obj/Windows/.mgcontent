@@ -5,12 +5,8 @@
   <Config />
   <SourceFiles>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/Player.png</File>
-    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/Tile1.jpg</File>
-    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/Tile2.jpg</File>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/bullet.png</File>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/Spike.png</File>
-    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/locked.jpg</File>
-    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/unlocked.png</File>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/key.png</File>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/IdleLeft.png</File>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/IdleRight.png</File>
@@ -23,5 +19,15 @@
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/ShootRight.png</File>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/ShootWalkRight.png</File>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/background1.jpg</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/Tile1.jpg</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/Tile2.jpg</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/EnemyIdle.png</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/EnemyWalkingRight.png</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/Cop.png</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/EnemyWalkingLeft.png</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/locked.png</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/unlocked.png</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/Tile3.jpg</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/Tile4.jpg</File>
   </SourceFiles>
 </SourceFileCollection>

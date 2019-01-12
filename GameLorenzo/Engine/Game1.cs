@@ -23,8 +23,10 @@ namespace GameLorenzo
         Prisoner prisoner;
         Key key;
         Bullet bullet;
-        int level = 1;
-        int prevLevel= 1;
+        Values values = new Values();
+
+
+        int prevLevel;
         
         public Game1()
         {
@@ -37,6 +39,7 @@ namespace GameLorenzo
         protected override void Initialize()
         {
             map = new Map();
+            
             mapGen = new MapLevelGenerator();
             background = new Background();
             key = new Key(new Vector2(1300, 600));
@@ -52,9 +55,9 @@ namespace GameLorenzo
             spikes.Add(new Spike(new Vector2(380, 920)));
 
 
-            enemies.Add(new Enemy(enemyTexture, new Vector2(500, 300)));
-            enemies.Add(new Enemy(enemyTexture, new Vector2(700, 300)));
-            enemies.Add(new Enemy(enemyTexture, new Vector2(900, 300)));
+            //enemies.Add(new Enemy(enemyTexture, new Vector2(500, 300)));
+            //enemies.Add(new Enemy(enemyTexture, new Vector2(700, 300)));
+            //enemies.Add(new Enemy(enemyTexture, new Vector2(900, 300)));
             camera = new Camera(GraphicsDevice.Viewport);
             base.Initialize();
         }
@@ -79,11 +82,19 @@ namespace GameLorenzo
                 {"ShootLeft", new Animation(Content.Load<Texture2D>("ShootLeft"), 1 )},
                  {"IdleRight", new Animation(Content.Load<Texture2D>("IdleRight"), 8 )},
                 {"IdleLeft", new Animation(Content.Load<Texture2D>("IdleLeft"), 8 )},
-                
+                {"EnemyWalkingRight", new Animation(Content.Load<Texture2D>("EnemyWalkingRight"), 6 )},
+                 {"EnemyWalkingLeft", new Animation(Content.Load<Texture2D>("EnemyWalkingLeft"), 6 )},
+                {"EnemyIdle", new Animation(Content.Load<Texture2D>("EnemyIdle"), 5 )},
+
             };
             player = new Player(animations);
 
-            mapGen.LoadContent(level, map);
+            enemies.Add(new Enemy(enemyTexture, new Vector2(500, 300),animations));
+            enemies.Add(new Enemy(enemyTexture, new Vector2(700, 300),animations));
+            enemies.Add(new Enemy(enemyTexture, new Vector2(900, 300),animations));
+
+
+            mapGen.LoadContent(values.level, map);
             player.Load(Content);
             key.Load(Content);
 
@@ -103,13 +114,13 @@ namespace GameLorenzo
 
 
             foreach (Enemy enemy in enemies)
-                enemy.Update(player.Postion);
+                enemy.Update(player.Postion, gameTime);
 
-            if (prevLevel != level)
+            if (prevLevel != values.level)
             {
-                mapGen.LoadContent(level, map);
+                mapGen.LoadContent(values.level, map);
             }
-            prevLevel = level;
+            prevLevel = values.level;
 
             //colissions and intersects
             ColllisionsAndIntersects();
@@ -213,7 +224,7 @@ namespace GameLorenzo
                 }
                 if (player.Postion.X == map.Width - 50)
                 {
-                    level = 2;
+                    values.level = 2;
                     player.Die = true;
                 }
 
