@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameLorenzo.Engine;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -25,16 +26,30 @@ namespace GameLorenzo
         public List<Bullet> Bullets;
         Vector2 origin;
         int lives = 5;
+        //animations
+        protected AnimationManager _animationManager;
+        protected Dictionary<string, Animation> _animations;
+
 
         public bool Die { get; set; } = false;
         public Vector2 Postion
         {
             get { return position; }
-            set { position = value; }
+            set { position = value;
+                if (_animationManager != null) _animationManager.Position = position;
+            }
             
         }
 
-        //Constructor
+        //Constructors
+        public Player(Dictionary<string, Animation> animations) {
+            bediening = new BedieningPijltjes();
+            Bullets = new List<Bullet>();
+            bulletDelay = 5;
+            origin = new Vector2(100 / 2, 100 / 2);
+            _animations = animations;
+            _animationManager = new AnimationManager(_animations.First().Value);
+        }
         public Player()
         {
             bediening = new BedieningPijltjes();
@@ -61,20 +76,55 @@ namespace GameLorenzo
             Input(gameTime);
             if (Die)
             {
-                position = new Vector2(100,100);
+                position = new Vector2(100, 100);
                 lives--;
                 Die = false;
             }
-           
+
+
+            //animations
+            SetAnimations(gameTime);
 
         }
 
-   
+        private void SetAnimations(GameTime gameTime)
+        {
+              if (velocity.X > 0 && !HasJumped && bediening.Shoot)
+                _animationManager.Play(_animations["ShootWalkRight"]);
+            else if (velocity.X < 0 && !HasJumped && bediening.Shoot)
+                _animationManager.Play(_animations["ShootWalkLeft"]);
+            else if (bediening.IdleLeft && bediening.Shoot)
+                _animationManager.Play(_animations["ShootLeft"]);
+            else if (bediening.IdleRight && bediening.Shoot)
+                _animationManager.Play(_animations["ShootRight"]);
+           
+            else if (velocity.X > 0 && !HasJumped)
+                _animationManager.Play(_animations["WalkRight"]);
+            else if (velocity.X < 0 && !HasJumped)
+                _animationManager.Play(_animations["WalkLeft"]);
+
+            else if (bediening.IdleRight && velocity.X == 0 && !bediening.Jump)
+                _animationManager.Play(_animations["IdleRight"]);
+            else if (bediening.IdleLeft && velocity.X == 0 && !bediening.Jump)
+                _animationManager.Play(_animations["IdleLeft"]);
+
+            else if ((velocity.Y != 0 && bediening.IdleRight) || (velocity.X > 0 && velocity.Y != 0))
+
+                _animationManager.Play(_animations["JumpRight"]);
+            else if ((velocity.Y != 0 && bediening.IdleLeft) || (velocity.X < 0 && velocity.Y != 0))
+                _animationManager.Play(_animations["JumpLeft"]);
+            
+            _animationManager.Update(gameTime);
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (velocity.X < 0)
-                spriteBatch.Draw(texture, rectangle, null, Color.White, 0, origin, SpriteEffects.FlipHorizontally, 0);
-            else spriteBatch.Draw(texture, rectangle, null, Color.White, 0, origin, SpriteEffects.None, 0);
+            //if (texture != null)
+            //    spriteBatch.Draw(texture, rectangle, Color.White);
+            if (_animationManager != null)
+                _animationManager.Draw(spriteBatch, Postion);
+            
+                
             
             foreach (Bullet b in Bullets)
                 b.Draw(spriteBatch);
@@ -162,7 +212,7 @@ namespace GameLorenzo
             //on timer 0
             if (bulletDelay <= 0) {
                 Bullet newBullet = new Bullet(bulletTexture, speed);
-                newBullet.Position = new Vector2(Postion.X + 32 - 20 /2, Postion.Y + 30);
+                newBullet.Position = new Vector2(Postion.X + 32 - 20 /2, Postion.Y +10);
                 newBullet.IsVisible = true;
 
                 //max 30 bullets

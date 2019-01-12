@@ -60,3 +60,14 @@ D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x
 D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\key.xnb
 D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\locked.xnb
 D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\unlocked.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\IdleLeft.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\IdleRight.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\JumpLeft.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\JumpRight.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\ShootWalkLeft.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\WalkLeft.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\WalkRight.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\ShootLeft.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\ShootRight.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\ShootWalkRight.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\background1.xnb

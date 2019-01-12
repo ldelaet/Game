@@ -13,11 +13,11 @@ namespace GameLorenzo
         Player player;
         Texture2D texture, healthTexture;
         Rectangle rectangle, healthRectangle;
-        Vector2 position, Velocity, origin, HealthPosition;
+        public Vector2 position, Velocity, origin, HealthPosition;
         int playerDistance, playerDistanceY;
         float rotation = 0f;
         bool isAbove = false, HasJumped = false;
-        
+        public bool Collides { get; set; }
 
         public bool IsVisible { get; set; } = true;
 
@@ -29,7 +29,7 @@ namespace GameLorenzo
         }
 
 
-        public int Health { get; set; } = 5;
+        public int Health { get; set; } = 10;
 
         public Enemy(Texture2D newTexture, Vector2 newPosition)
         {
@@ -66,15 +66,15 @@ namespace GameLorenzo
             if (Velocity.Y < 10)
                 Velocity.Y += 0.4f;
             
-                if (playerDistanceY < 160 && playerDistanceY > -160)
+                if (playerDistanceY < 160 && playerDistanceY > -160 && !Collides)
                 {
                     if (playerDistance < 600 && playerDistance > 0)
                     {
-                        Velocity.X = 2f;
+                        Velocity.X = 1.5f;
                     }
                     else if (playerDistance > -600 && playerDistance < 0)
                     {
-                        Velocity.X = -2f;
+                        Velocity.X = -1.5f;
                     }
                     else Velocity.X = 0;
                 }

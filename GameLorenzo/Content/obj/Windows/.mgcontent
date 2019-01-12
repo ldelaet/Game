@@ -12,5 +12,16 @@
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/locked.jpg</File>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/unlocked.png</File>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/key.png</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/IdleLeft.png</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/IdleRight.png</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/JumpLeft.png</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/JumpRight.png</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/ShootWalkLeft.png</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/WalkLeft.png</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/WalkRight.png</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/ShootLeft.png</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/ShootRight.png</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/ShootWalkRight.png</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/background1.jpg</File>
   </SourceFiles>
 </SourceFileCollection>

@@ -41,7 +41,10 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Characters\Background.cs" />
     <Compile Include="Core\Bediening.cs" />
+    <Compile Include="Engine\Animation.cs" />
+    <Compile Include="Engine\AnimationManager.cs" />
     <Compile Include="Objects\Bullet.cs" />
     <Compile Include="Core\Camera.cs" />
     <Compile Include="Characters\Enemy.cs" />

@@ -14,6 +14,7 @@ namespace GameLorenzo
         public List<CollisionTiles> CollisionTiles
         {
             get { return collisionTiles; }
+            set { collisionTiles = value; }
         }
 
         private int width, height;
@@ -25,11 +26,12 @@ namespace GameLorenzo
         {
             get { return height; }
         }
-
+        
         public Map() { }
 
         public void Generate(int[,] map, int size)
         {
+            
             for (int i = 0; i < map.GetLength(1); i++)
             {
                 for (int j = 0; j < map.GetLength(0); j++)
@@ -52,10 +54,12 @@ namespace GameLorenzo
     }
     class MapLevelGenerator
     {
+        
         public void LoadContent(int level, Map map)
         {
             if (level == 1)
             {
+                map.CollisionTiles.Clear();
                 map.Generate(new int[,]{
                     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
                     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -71,6 +75,26 @@ namespace GameLorenzo
                     {2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2},
                     {2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
                 }, 80);
+            }
+            else if (level == 2)
+            {
+                map.CollisionTiles.Clear();
+                map.Generate(new int[,]{
+                    {1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                    {1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+                    {1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+                    {1,1,1,0,0,0,1,0,0,0,0,1,1,0,0,0,1,1},
+                    {1,1,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1},
+                    {1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1},
+                    {1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1},
+                    {2,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2},
+                    {2,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,2},
+                    {2,1,1,0,0,0,1,0,0,0,1,0,0,1,0,0,0,0},
+                    {2,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2},
+                    {2,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2},
+                    {2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
+                }, 80);
+                
             }
         }
     }
