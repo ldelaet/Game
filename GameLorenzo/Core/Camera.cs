@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace GameLorenzo
 {
+    //comments komen nog
     class Camera
     {
         private Matrix _matrix;

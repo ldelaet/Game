@@ -10,8 +10,10 @@ using System.Threading.Tasks;
 
 namespace GameLorenzo
 {
-    class Prisoner: ObjectMother
+    //Klasse voor prisoner object
+    class Prisoner : ObjectMother
     {
+        public bool Unlocked { get; set; } = false;
         public Prisoner(Vector2 Position)
         {
             position = Position;

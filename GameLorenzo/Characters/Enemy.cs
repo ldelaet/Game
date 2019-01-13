@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace GameLorenzo
 {
+    //comments komen nog, klasse wordt nog gecleant
     class Enemy
     {
         Player player;
@@ -116,15 +117,10 @@ namespace GameLorenzo
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            rectangle = new Rectangle((int)_position.X, (int)_position.Y, 70, 70);
+            rectangle = new Rectangle((int)_position.X, (int)_position.Y, 35, 70);
             if (_animationManager != null && IsVisible)
                 _animationManager.Draw(spriteBatch, postion);
-            //if (IsVisible)
-            //{
-            //    if (Velocity.X < 0)
-            //        spriteBatch.Draw(texture, rectangle, null, Color.White, rotation, origin, SpriteEffects.FlipHorizontally, 0);
-            //    else spriteBatch.Draw(texture, rectangle, null, Color.White, rotation, origin, SpriteEffects.None, 0);
-            //}
+            
         }
 
         public void Collision(Rectangle newRectangle, int x, int y)

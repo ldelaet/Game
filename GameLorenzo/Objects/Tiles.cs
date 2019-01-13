@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace GameLorenzo
 {
+    //Managed de tiles
     public class Tiles
     {
         protected Texture2D texture;
@@ -33,7 +34,7 @@ namespace GameLorenzo
             spriteBatch.Draw(texture, rectangle, Color.White);
         }
     }
-
+    //maakt de tiles compatibel voor collision checks
     class CollisionTiles : Tiles
     {
         public CollisionTiles(int i, Rectangle newRectangle)

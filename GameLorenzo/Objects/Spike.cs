@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace GameLorenzo
 {
+    //Klasse voor het spike object
     class Spike : ObjectMother
     {
 

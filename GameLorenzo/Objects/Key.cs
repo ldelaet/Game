@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace GameLorenzo
 {
+    //Key object
     class Key: ObjectMother
     {
         public bool collected { get; set; } = false;

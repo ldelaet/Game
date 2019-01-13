@@ -77,3 +77,6 @@ D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x
 D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\EnemyWalkingLeft.xnb
 D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\Tile3.xnb
 D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\Tile4.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\ButtonStart.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\MainMenu.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\WinningScreen.xnb

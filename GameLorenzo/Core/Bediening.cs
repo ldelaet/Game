@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GameLorenzo
 {
-
+    //controls logica
     public abstract class Bediening
     {
         private bool idleRight = true;

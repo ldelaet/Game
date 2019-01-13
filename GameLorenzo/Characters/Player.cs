@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace GameLorenzo
 {
+    //comments komen nog, klasse wordt nog gecleant
     class Player
     {
         //classes
         public Bediening bediening;
-        public Enemy enemy;
         private Texture2D texture, bulletTexture;
         private Vector2 position = new Vector2(100, 100);
         private Vector2 spawnPosition = new Vector2(100, 100);
@@ -26,15 +26,12 @@ namespace GameLorenzo
         private float bulletDelay;
         public List<Bullet> Bullets;
         Vector2 origin;
-        int lives = 5;
+        //int lives = 5;
         public int level = 1;
         Values values = new Values();
         //animations
         protected AnimationManager _animationManager;
         protected Dictionary<string, Animation> _animations;
-
-
-
         public bool Die { get; set; } = false;
         public bool NextLevel { get; set; } = false;
         public Vector2 Postion
@@ -83,26 +80,18 @@ namespace GameLorenzo
 
             if (Die && level == 1)
             {
-
                 position = new Vector2(100, 100);
-                lives--;
+                //lives--;
                 Die = false;
 
             }
             else if (Die && level == 2)
             {
                 position = new Vector2(220, 1460);
-                lives--;
+                //lives--;
                 Die = false;
-
             }
             Input(gameTime);
-            
-
-            
-
-
-
             //animations
             SetAnimations(gameTime);
 
@@ -118,23 +107,18 @@ namespace GameLorenzo
                 _animationManager.Play(_animations["ShootLeft"]);
             else if (bediening.IdleRight && bediening.Shoot)
                 _animationManager.Play(_animations["ShootRight"]);
-           
             else if (velocity.X > 0 && !HasJumped)
                 _animationManager.Play(_animations["WalkRight"]);
             else if (velocity.X < 0 && !HasJumped)
                 _animationManager.Play(_animations["WalkLeft"]);
-
             else if (bediening.IdleRight && velocity.X == 0 && !bediening.Jump)
                 _animationManager.Play(_animations["IdleRight"]);
             else if (bediening.IdleLeft && velocity.X == 0 && !bediening.Jump)
                 _animationManager.Play(_animations["IdleLeft"]);
-
             else if ((velocity.Y != 0 && bediening.IdleRight) || (velocity.X > 0 && velocity.Y != 0))
-
                 _animationManager.Play(_animations["JumpRight"]);
             else if ((velocity.Y != 0 && bediening.IdleLeft) || (velocity.X < 0 && velocity.Y != 0))
                 _animationManager.Play(_animations["JumpLeft"]);
-            
             _animationManager.Update(gameTime);
         }
 
