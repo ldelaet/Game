@@ -27,6 +27,7 @@ namespace GameLorenzo
         public List<Bullet> Bullets;
         Vector2 origin;
         int lives = 5;
+        public int level = 1;
         Values values = new Values();
         //animations
         protected AnimationManager _animationManager;
@@ -79,25 +80,26 @@ namespace GameLorenzo
             rectangle = new Rectangle((int)position.X, (int)position.Y, 50, 50);
             if (velocity.Y < 10)
                 velocity.Y += 0.4f;
-            Input(gameTime);
-            if (Die)
+
+            if (Die && level == 1)
             {
-                if (values.level == 1)
-                {
-                    position = new Vector2(100, 100);
-                    
-                }
-                else if (values.level == 2) {
-                    position = new Vector2(500, 1680);
-                }
+
+                position = new Vector2(100, 100);
                 lives--;
                 Die = false;
 
             }
-            if (NextLevel) {
-                spawnPosition = new Vector2(500, 1680);
-                position = spawnPosition;
+            else if (Die && level == 2)
+            {
+                position = new Vector2(220, 1460);
+                lives--;
+                Die = false;
+
             }
+            Input(gameTime);
+            
+
+            
 
 
 

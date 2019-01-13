@@ -23,11 +23,12 @@ namespace GameLorenzo
         Prisoner prisoner;
         Key key;
         Bullet bullet;
-        Values values = new Values();
+        //Values values = new Values();
+        
 
 
         int prevLevel;
-        
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -42,22 +43,8 @@ namespace GameLorenzo
             
             mapGen = new MapLevelGenerator();
             background = new Background();
-            key = new Key(new Vector2(1300, 600));
-            prisoner = new Prisoner(new Vector2(1280, 160));
-            enemyTexture = Content.Load<Texture2D>("Player");
-            //spikes.Add(new Spike(new Vector2(320, 440)));
-            spikes.Add(new Spike(new Vector2(1320, 920)));
-            spikes.Add(new Spike(new Vector2(1280, 920)));
-            spikes.Add(new Spike(new Vector2(1240, 920)));
-            spikes.Add(new Spike(new Vector2(1200, 920)));
-            spikes.Add(new Spike(new Vector2(960, 920)));
-            spikes.Add(new Spike(new Vector2(660, 920)));
-            spikes.Add(new Spike(new Vector2(380, 920)));
-
-
-            //enemies.Add(new Enemy(enemyTexture, new Vector2(500, 300)));
-            //enemies.Add(new Enemy(enemyTexture, new Vector2(700, 300)));
-            //enemies.Add(new Enemy(enemyTexture, new Vector2(900, 300)));
+           
+            
             camera = new Camera(GraphicsDevice.Viewport);
             base.Initialize();
         }
@@ -65,12 +52,46 @@ namespace GameLorenzo
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Tiles.Content = Content;
-            foreach (Spike spike in spikes) spike.Load(Content);
-            prisoner.Load(Content);
+
             background.Load(Content);
 
             //animations
-            var animations = new Dictionary<string, Animation>()
+            Dictionary<string, Animation> animations = AnimationDictInit();
+            player = new Player(animations);
+
+            key = new Key(new Vector2(1300, 600));
+            prisoner = new Prisoner(new Vector2(1280, 160));
+            for (int i = 380; i < 1320; i+=40)
+            {
+                int j = 920;
+                spikes.Add(new Spike(new Vector2(i, j)));
+
+            }
+            //spikes.Add(new Spike(new Vector2(1320, 920)));
+            //spikes.Add(new Spike(new Vector2(1280, 920)));
+            //spikes.Add(new Spike(new Vector2(1240, 920)));
+            //spikes.Add(new Spike(new Vector2(1200, 920)));
+            //spikes.Add(new Spike(new Vector2(960, 920)));
+            //spikes.Add(new Spike(new Vector2(660, 920)));
+            //spikes.Add(new Spike(new Vector2(380, 920)));
+            enemies.Add(new Enemy(enemyTexture, new Vector2(300, 500), animations));
+            enemies.Add(new Enemy(enemyTexture, new Vector2(700, 300), animations));
+            enemies.Add(new Enemy(enemyTexture, new Vector2(900, 300), animations));
+
+
+            foreach (Spike spike in spikes) spike.Load(Content);
+            prisoner.Load(Content);
+            mapGen.LoadContent(player.level, map);
+            player.Load(Content);
+            key.Load(Content);
+
+
+
+        }
+
+        private Dictionary<string, Animation> AnimationDictInit()
+        {
+            return new Dictionary<string, Animation>()
             {
                 {"JumpRight", new Animation(Content.Load<Texture2D>("JumpRight"), 1 )},
                 {"JumpLeft", new Animation(Content.Load<Texture2D>("JumpLeft"), 1 )},
@@ -87,40 +108,31 @@ namespace GameLorenzo
                 {"EnemyIdle", new Animation(Content.Load<Texture2D>("EnemyIdle"), 5 )},
 
             };
-            player = new Player(animations);
-
-            enemies.Add(new Enemy(enemyTexture, new Vector2(500, 300),animations));
-            enemies.Add(new Enemy(enemyTexture, new Vector2(700, 300),animations));
-            enemies.Add(new Enemy(enemyTexture, new Vector2(900, 300),animations));
-
-
-            mapGen.LoadContent(values.level, map);
-            player.Load(Content);
-            key.Load(Content);
-
-
-
         }
+
         protected override void UnloadContent() {
             
         }
         protected override void Update(GameTime gameTime)
         {
+            Console.WriteLine(player.Postion);
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             //Class updates
             player.Update(gameTime);
+            LevelLoader();
 
 
             foreach (Enemy enemy in enemies)
                 enemy.Update(player.Postion, gameTime);
 
-            if (prevLevel != values.level)
+            if (prevLevel != player.level)
             {
-                mapGen.LoadContent(values.level, map);
+                
+                mapGen.LoadContent(player.level, map);
             }
-            prevLevel = values.level;
+            prevLevel = player.level;
 
             //colissions and intersects
             ColllisionsAndIntersects();
@@ -145,6 +157,31 @@ namespace GameLorenzo
             base.Draw(gameTime);
         }
 
+        public void LevelLoader()
+        {
+            if (player.level == 2 && (prevLevel != player.level))
+            {
+                key.collected = false;
+                Dictionary<string, Animation> animations = AnimationDictInit();
+                spikes.Clear();
+                enemies.Clear();
+                key = new Key(new Vector2(80, 200));
+                prisoner = new Prisoner(new Vector2(1280, 80));
+                for (int i = 400; i < 1120; i+= 40)
+                {
+                    int j = 1560;
+                    spikes.Add(new Spike(new Vector2(i, j)));
+
+                }
+                enemies.Add(new Enemy(enemyTexture, new Vector2(120, 180), animations));
+                enemies.Add(new Enemy(enemyTexture, new Vector2(200, 180), animations));
+                enemies.Add(new Enemy(enemyTexture, new Vector2(280, 180), animations));
+                foreach (Spike spike in spikes) spike.Load(Content);
+                prisoner.Load(Content);
+                key.Load(Content);
+            }
+            
+        }
 
         //Core methods:
         private void RemoveBullet(Bullet b)
@@ -221,11 +258,13 @@ namespace GameLorenzo
                 if (prisoner.rectangle.Intersects(player.rectangle) && key.collected)
                 {
                     prisoner.texture = Content.Load<Texture2D>("unlocked");
+                    if (player.level == 2) Console.WriteLine("Gewonnen");
                 }
                 if (player.Postion.X == map.Width - 50)
                 {
-                    values.level = 2;
+                    
                     player.Die = true;
+                    player.level = 2;
                 }
 
             }
