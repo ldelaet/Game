@@ -1,4 +1,5 @@
-﻿using GameLorenzo.Engine;
+﻿using GameLorenzo.Characters;
+using GameLorenzo.Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -14,6 +15,7 @@ namespace GameLorenzo
     class Enemy
     {
         private Player player;
+        private HealthBar healthBar;
         private Texture2D texture, healthTexture;
         private Rectangle rectangle, healthRectangle;
         private Vector2 Velocity, origin, HealthPosition;
@@ -115,6 +117,7 @@ namespace GameLorenzo
             rectangle = new Rectangle((int)_position.X, (int)_position.Y, 35, 70);
             if (_animationManager != null && IsVisible)
                 _animationManager.Draw(spriteBatch, postion);
+            
         }
 
         public void Collision(Rectangle newRectangle, int x, int y)

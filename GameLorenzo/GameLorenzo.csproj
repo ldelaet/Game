@@ -56,6 +56,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Objects\HealthBar.cs" />
     <Compile Include="Graphics\Background.cs" />
     <Compile Include="PublicValues\Values.cs" />
     <Compile Include="Core\Bediening.cs" />

@@ -84,3 +84,5 @@ D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x
 D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\ButtonStart.xnb
 D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\WinningScreen.xnb
 D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\MainMenu.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\HealthGreen.xnb
+D:\School\Game Developement\Game 2018\GameLorenzo\Game\GameLorenzo\bin\Windows\x86\Debug\Content\HealthRed.xnb

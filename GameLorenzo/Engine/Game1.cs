@@ -17,6 +17,7 @@ namespace GameLorenzo
         Map map;
         MapLevelGenerator mapGen;
         Player player;
+        HealthBar healthBar;
         Background background;
         List<Enemy> enemies = new List<Enemy>();
         List<Spike> spikes = new List<Spike>();
@@ -51,6 +52,7 @@ namespace GameLorenzo
             mapGen = new MapLevelGenerator();
             background = new Background();
             camera = new Camera(GraphicsDevice.Viewport);
+            healthBar = new HealthBar();
             base.Initialize();
         }
         protected override void LoadContent()
@@ -80,8 +82,10 @@ namespace GameLorenzo
             enemies.Add(new Enemy(enemyTexture, new Vector2(310, 400), animations));
             enemies.Add(new Enemy(enemyTexture, new Vector2(700, 400), animations));
             enemies.Add(new Enemy(enemyTexture, new Vector2(900, 400), animations));
+            
             foreach (Spike spike in spikes) spike.Load(Content);
             prisoner.Load(Content);
+            healthBar.Load(Content);
             mapGen.LoadContent(player.level, map);
             player.Load(Content);
             key.Load(Content);
@@ -117,7 +121,11 @@ namespace GameLorenzo
             //Class updates
             player.Update(gameTime);
             LevelLoader();
-            foreach (Enemy enemy in enemies) enemy.Update(player.Postion, gameTime);
+            foreach (Enemy enemy in enemies)
+            {
+                enemy.Update(player.Postion, gameTime);
+                healthBar.Update(enemy.postion, enemy.Health);
+            }
             //Hergenereer map als het level veranderd is
             RegenerateMap();
 
@@ -163,7 +171,11 @@ namespace GameLorenzo
             key.Draw(spriteBatch);
             player.Draw(spriteBatch);
             winning.Draw(spriteBatch, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
-            foreach (Enemy enemy in enemies) enemy.Draw(spriteBatch);
+            foreach (Enemy enemy in enemies) {
+                enemy.Draw(spriteBatch);
+                healthBar.Draw(spriteBatch);
+            }
+            
             foreach (Spike spike in spikes) spike.Draw(spriteBatch);
             //teken de huidige game state
             GameStateDraw();
