@@ -34,7 +34,7 @@ namespace GameLorenzo
         GameState CurrentGameState = GameState.Menu;
 
         //Lokale, hardcoded variabele
-        int prevLevel;
+        private int prevLevel;
         Texture2D enemyTexture;
 
         public Game1()
@@ -76,6 +76,7 @@ namespace GameLorenzo
                 spikes.Add(new Spike(new Vector2(i, j)));
 
             }
+            //enemies spawnen
             enemies.Add(new Enemy(enemyTexture, new Vector2(310, 400), animations));
             enemies.Add(new Enemy(enemyTexture, new Vector2(700, 400), animations));
             enemies.Add(new Enemy(enemyTexture, new Vector2(900, 400), animations));
@@ -85,7 +86,7 @@ namespace GameLorenzo
             player.Load(Content);
             key.Load(Content);
         }
-        //De dictionary bevat een Alias en verder laad hier gewoon de content van de bijhorende media. Zie Animation class voor meer uitleg
+        //De dictionary bevat een Alias en verder laad hier gewoon de content van de bijhorende media. Zie Animation class
         private Dictionary<string, Animation> AnimationDictInit()
         {
             return new Dictionary<string, Animation>()
@@ -154,8 +155,8 @@ namespace GameLorenzo
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Beige);
+            //zorgt ervoor dat enkel de zaken binnen de viewport van de camera getekend worden om zo geuheugen te besparen
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.matrix);
-
             background.Draw(spriteBatch, map.Width, map.Height);
             map.Draw(spriteBatch);
             prisoner.Draw(spriteBatch);
@@ -228,7 +229,7 @@ namespace GameLorenzo
                 foreach (Enemy enemy in enemies)
                 {
                     enemy.Collision(tile.Rectangle, map.Width, map.Height);
-                    //Collision, Work in progress:
+                    //Collision, zorgt ervoor dat mannetjes niet meer kunnen bewegen:
                     //if (enemy.Rectangle.Intersects(enemy.Rectangle)) enemy.Collides = true;
                     foreach (Enemy enemy2 in enemies)
                     {
@@ -275,6 +276,7 @@ namespace GameLorenzo
                 foreach (Spike spike in spikes)
                 {
                     if (spike.rectangle.Intersects(player.rectangle)) player.Die = true;
+
                 }
                 //collect key
                 if (key.rectangle.Intersects(player.rectangle))

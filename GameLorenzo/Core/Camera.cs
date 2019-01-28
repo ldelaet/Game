@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace GameLorenzo
 {
-    //comments komen nog
+    //Zorgt er voor dat de camera de speler volgt m.a.w. dat de viewport de speler steeds in het midden weergeeft
     class Camera
     {
         private Matrix _matrix;
-
         public Matrix matrix
         {
             get { return _matrix; }
@@ -20,7 +19,6 @@ namespace GameLorenzo
         }
         private Vector2 center;
         private Viewport viewport;
-
         public Camera(Viewport newViewport)
         {
             viewport = newViewport;

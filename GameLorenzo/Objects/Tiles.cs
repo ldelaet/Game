@@ -34,7 +34,7 @@ namespace GameLorenzo
             spriteBatch.Draw(texture, rectangle, Color.White);
         }
     }
-    //maakt de tiles compatibel voor collision checks
+    //maakt de tiles compatibel voor collision checks en laad de textures er in
     class CollisionTiles : Tiles
     {
         public CollisionTiles(int i, Rectangle newRectangle)

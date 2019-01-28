@@ -25,10 +25,9 @@ namespace GameLorenzo
         private bool HasJumped = false;
         private float bulletDelay;
         public List<Bullet> Bullets;
-        Vector2 origin;
-        //int lives = 5;
+        private Vector2 origin;
         public int level = 1;
-        Values values = new Values();
+        private Values values = new Values();
         //animations
         protected AnimationManager _animationManager;
         protected Dictionary<string, Animation> _animations;
@@ -37,15 +36,18 @@ namespace GameLorenzo
         public Vector2 Postion
         {
             get { return position; }
-            set { position = value;
+            set
+            {
+                position = value;
                 if (_animationManager != null) _animationManager.Position = position;
             }
-            
+
         }
 
         //Constructors
-        public Player(Dictionary<string, Animation> animations) {
-            
+        public Player(Dictionary<string, Animation> animations)
+        {
+
             bediening = new BedieningPijltjes();
             Bullets = new List<Bullet>();
             bulletDelay = 5;
@@ -59,17 +61,12 @@ namespace GameLorenzo
             Bullets = new List<Bullet>();
             bulletDelay = 5;
             origin = new Vector2(100 / 2, 100 / 2);
-            
         }
 
         public void Load(ContentManager Content)
         {
-             
             texture = Content.Load<Texture2D>("Player");
             bulletTexture = Content.Load<Texture2D>("bullet");
-            
-            
-
         }
         public void Update(GameTime gameTime)
         {
@@ -99,7 +96,7 @@ namespace GameLorenzo
 
         private void SetAnimations(GameTime gameTime)
         {
-              if (velocity.X > 0 && !HasJumped && bediening.Shoot)
+            if (velocity.X > 0 && !HasJumped && bediening.Shoot)
                 _animationManager.Play(_animations["ShootWalkRight"]);
             else if (velocity.X < 0 && !HasJumped && bediening.Shoot)
                 _animationManager.Play(_animations["ShootWalkLeft"]);
@@ -128,9 +125,9 @@ namespace GameLorenzo
             //    spriteBatch.Draw(texture, rectangle, Color.White);
             if (_animationManager != null)
                 _animationManager.Draw(spriteBatch, Postion);
-            
-                
-            
+
+
+
             foreach (Bullet b in Bullets)
                 b.Draw(spriteBatch);
         }
@@ -150,7 +147,7 @@ namespace GameLorenzo
                 {
                     Shoot(-20);
                 }
-                
+
             }
             UpdateBullets();
             //left gedrag
@@ -166,7 +163,7 @@ namespace GameLorenzo
             else velocity.X = 0;
             if (bediening.Sprint && velocity.X != 0)
                 velocity.X *= 1.3f;
-            
+
             //jump gedrag
             if (bediening.Jump && !HasJumped)
             {
@@ -187,12 +184,11 @@ namespace GameLorenzo
 
             if (rectangle.isOnLeft(newRectangle))
             {
-
                 position.X = newRectangle.X + (newRectangle.Width + 2);
             }
             if (rectangle.isOnRight(newRectangle))
             {
-               position.X = newRectangle.X - (rectangle.Width + 2);
+                position.X = newRectangle.X - (rectangle.Width + 2);
             }
             if (rectangle.isOnBottomOf(newRectangle))
             {
@@ -202,22 +198,18 @@ namespace GameLorenzo
             if (position.X > x - rectangle.Width) position.X = x - rectangle.Width;
             if (position.Y < 0) velocity.Y = 1f;
             if (position.Y > y - rectangle.Height) position.Y = y - rectangle.Height;
-
-            //if (rectangle.isOnBottomOf(newRectangle) | rectangle.isOnLeft(newRectangle) | rectangle.isOnRight(newRectangle) | rectangle.isOnTopOf(newRectangle))
-            //{
-            //    collision = true;
-            //}
-            //else collision = false;
         }
 
         //start positie bullet instellen
-        public void Shoot(int speed) {
+        public void Shoot(int speed)
+        {
             //timer
             if (bulletDelay >= 0) bulletDelay--;
             //on timer 0
-            if (bulletDelay <= 0) {
+            if (bulletDelay <= 0)
+            {
                 Bullet newBullet = new Bullet(bulletTexture, speed);
-                newBullet.Position = new Vector2(Postion.X + 32 - 20 /2, Postion.Y +10);
+                newBullet.Position = new Vector2(Postion.X + 32 - 20 / 2, Postion.Y + 10);
                 newBullet.IsVisible = true;
 
                 //max 30 bullets
@@ -228,11 +220,10 @@ namespace GameLorenzo
             if (bulletDelay == 0) bulletDelay = 10;
         }
 
-        public void UpdateBullets() {
-
+        public void UpdateBullets()
+        {
             foreach (Bullet b in Bullets)
             {
-
                 b.Velocity.X = b.Speed;
                 b.Position.X += b.Velocity.X;
                 if (b.Position.X > Postion.X + 500 || b.Position.X < Postion.X - 500) b.IsVisible = false;
@@ -240,7 +231,8 @@ namespace GameLorenzo
             //remove invisible bullets
             for (int i = 0; i < Bullets.Count(); i++)
             {
-                if (!Bullets[i].IsVisible) {
+                if (!Bullets[i].IsVisible)
+                {
                     Bullets.RemoveAt(i);
                     i--;
                 }

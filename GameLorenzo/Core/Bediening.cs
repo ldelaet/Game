@@ -23,10 +23,7 @@ namespace GameLorenzo
         public bool Jump { get; set; }
         public bool Shoot { get; set; }
         public bool Sprint { get; set; }
-        //protected KeyboardState CurrentKey { get; set; }
         public KeyboardState PrevKey { get; set; }
-
-
         public abstract void Update();
     }
 
