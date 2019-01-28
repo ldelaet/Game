@@ -12,11 +12,12 @@ using System.Threading.Tasks;
 
 namespace GameLorenzo
 {
-    //comments komen nog, klasse wordt nog gecleant
+    //Comments doorheen code. Deze klass eomtrent alle acties van het speelbaar karakter
     class Player
     {
         //classes
         public Bediening bediening;
+        private Key key;
         private Texture2D texture, bulletTexture;
         private Vector2 position = new Vector2(100, 100);
         private Vector2 spawnPosition = new Vector2(100, 100);
@@ -52,6 +53,7 @@ namespace GameLorenzo
             bulletDelay = 5;
             origin = new Vector2(100 / 2, 100 / 2);
             _animations = animations;
+            
             _animationManager = new AnimationManager(_animations.First().Value);
         }
         public Player()
@@ -74,17 +76,20 @@ namespace GameLorenzo
             if (velocity.Y < 10)
                 velocity.Y += 0.4f;
 
+            if (Die) {
+                //Maakte de game te moeilijk
+                //lives--;
+                
+            }
             if (Die && level == 1)
             {
                 position = new Vector2(100, 100);
-                //lives--;
                 Die = false;
 
             }
             else if (Die && level == 2)
             {
                 position = new Vector2(220, 1460);
-                //lives--;
                 Die = false;
             }
             Input(gameTime);
@@ -119,8 +124,6 @@ namespace GameLorenzo
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            //if (texture != null)
-            //    spriteBatch.Draw(texture, rectangle, Color.White);
             if (_animationManager != null)
                 _animationManager.Draw(spriteBatch, Postion);
 
@@ -215,7 +218,7 @@ namespace GameLorenzo
                     Bullets.Add(newBullet);
             }
             //reset timer
-            if (bulletDelay == 0) bulletDelay = 10;
+            if (bulletDelay == 0) bulletDelay = 20;
         }
 
         public void UpdateBullets()

@@ -243,8 +243,6 @@ namespace GameLorenzo
                 foreach (Enemy enemy in enemies)
                 {
                     enemy.Collision(tile.Rectangle, map.Width, map.Height);
-                    //Collision, zorgt ervoor dat mannetjes niet meer kunnen bewegen:
-                    //if (enemy.Rectangle.Intersects(enemy.Rectangle)) enemy.Collides = true;
                     foreach (Enemy enemy2 in enemies)
                     {
                         if (enemy != enemy2)
@@ -284,12 +282,22 @@ namespace GameLorenzo
                     if (player.rectangle.Intersects(enemy.Rectangle) && enemy.IsVisible)
                     {
                         player.Die = true;
+                        key.collected = false;
+                        key.isVisible = true;
+
                     }
+
+                    //Maakte de game te moeilijk
+                    //if(player.Die) enemy.Health = 5;
                 }
                 //Speler sterft bij een intersect met een Spike
                 foreach (Spike spike in spikes)
                 {
-                    if (spike.rectangle.Intersects(player.rectangle)) player.Die = true;
+                    if (spike.rectangle.Intersects(player.rectangle)) {
+                        player.Die = true;
+                        key.collected = false;
+                        key.isVisible = true;
+                    }
 
                 }
                 //collect key

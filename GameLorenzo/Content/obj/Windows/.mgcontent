@@ -18,7 +18,6 @@
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/ShootLeft.png</File>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/ShootRight.png</File>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/ShootWalkRight.png</File>
-    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/background1.jpg</File>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/Tile1.jpg</File>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/Tile2.jpg</File>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/EnemyIdle.png</File>
@@ -30,11 +29,11 @@
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/Tile3.jpg</File>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/Tile4.jpg</File>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/scream.mp3</File>
-    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/track.mp3</File>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/ButtonStart.png</File>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/WinningScreen.png</File>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/MainMenu.png</File>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/HealthGreen.png</File>
     <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/HealthRed.png</File>
+    <File>D:/School/Game Developement/Game 2018/GameLorenzo/Game/GameLorenzo/Content/background1.jpg</File>
   </SourceFiles>
 </SourceFileCollection>

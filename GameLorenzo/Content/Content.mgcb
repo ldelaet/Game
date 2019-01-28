@@ -181,18 +181,6 @@
 /processorParam:TextureFormat=Color
 /build:ShootWalkRight.png
 
-#begin background1.jpg
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:background1.jpg
-
 #begin Tile1.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -319,12 +307,6 @@
 /processorParam:Quality=Best
 /build:scream.mp3
 
-#begin track.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:track.mp3
-
 #begin ButtonStart.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -384,4 +366,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:HealthRed.png
+
+#begin background1.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:background1.jpg
 
