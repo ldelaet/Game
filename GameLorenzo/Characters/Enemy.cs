@@ -15,10 +15,10 @@ namespace GameLorenzo
     class Enemy
     {
         private Player player;
-        private HealthBar healthBar;
-        private Texture2D texture, healthTexture;
-        private Rectangle rectangle, healthRectangle;
-        private Vector2 Velocity, origin, HealthPosition;
+        public HealthBar healthBar { get; set; }
+        private Texture2D texture;
+        private Rectangle rectangle;
+        private Vector2 Velocity, origin;
         //animations
         protected AnimationManager _animationManager;
         protected Dictionary<string, Animation> _animations;
@@ -53,6 +53,7 @@ namespace GameLorenzo
             _position = newPosition;
             _animations = animations;
             _animationManager = new AnimationManager(_animations.First().Value);
+            healthBar = new HealthBar(_position, Health);
         }
 
         public Enemy(Texture2D newTexture, Vector2 newPosition)
@@ -69,6 +70,7 @@ namespace GameLorenzo
             playerDistanceY = (int)newPosition.Y - (int)_position.Y;
             if ((int)newPosition.Y > (int)_position.Y) isAbove = true;
             else isAbove = false;
+            healthBar.Update(postion, Health);
             AI();
             SetAnimations(gameTime);
         }
@@ -77,7 +79,6 @@ namespace GameLorenzo
             Health--;
             if (Health <= 0)
             {
-
                 IsVisible = false;
             }
         }
@@ -117,6 +118,7 @@ namespace GameLorenzo
             rectangle = new Rectangle((int)_position.X, (int)_position.Y, 35, 70);
             if (_animationManager != null && IsVisible)
                 _animationManager.Draw(spriteBatch, postion);
+            healthBar.Draw(spriteBatch);
             
         }
 

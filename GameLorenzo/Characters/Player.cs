@@ -41,7 +41,6 @@ namespace GameLorenzo
                 position = value;
                 if (_animationManager != null) _animationManager.Position = position;
             }
-
         }
 
         //Constructors
@@ -91,7 +90,6 @@ namespace GameLorenzo
             Input(gameTime);
             //animations
             SetAnimations(gameTime);
-
         }
 
         private void SetAnimations(GameTime gameTime)

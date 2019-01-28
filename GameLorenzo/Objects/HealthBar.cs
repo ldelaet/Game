@@ -10,21 +10,28 @@ using System.Threading.Tasks;
 
 namespace GameLorenzo.Characters
 {
+
+    //logica achter de health bar
     class HealthBar : ObjectMother
     {
         private Texture2D greenBar;
         private Rectangle rectangleRed;
         private Rectangle rectangleGreen;
-        private int width;
-        public HealthBar()
+        private int width = 5;
+        public HealthBar(Vector2 newPosition, int Health)
         {
+            position = newPosition;
+            width = Health * 8;
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            rectangleRed = new Rectangle((int)position.X, (int)position.Y,width,20);
-            rectangleGreen = new Rectangle((int)position.X, (int)position.Y, 200, 20);
+            rectangleRed = new Rectangle((int)position.X, (int)position.Y -10,40,7);
+            rectangleGreen = new Rectangle((int)position.X, (int)position.Y - 10, width, 7);
+
+            if (width > 0) { 
             spriteBatch.Draw(texture, rectangleRed, Color.White);
             spriteBatch.Draw(greenBar, rectangleGreen, Color.White);
+            }
         }
 
         public override void Load(ContentManager Content)
@@ -34,8 +41,7 @@ namespace GameLorenzo.Characters
         }
         public void Update(Vector2 newPosition, int Health) {
             position = newPosition;
-            width = Health * 40;
-
+            width = Health * 8;
         }
     }
 }

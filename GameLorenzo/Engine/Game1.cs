@@ -17,7 +17,7 @@ namespace GameLorenzo
         Map map;
         MapLevelGenerator mapGen;
         Player player;
-        HealthBar healthBar;
+        //List<HealthBar> healthBar = new List<HealthBar>();
         Background background;
         List<Enemy> enemies = new List<Enemy>();
         List<Spike> spikes = new List<Spike>();
@@ -52,7 +52,6 @@ namespace GameLorenzo
             mapGen = new MapLevelGenerator();
             background = new Background();
             camera = new Camera(GraphicsDevice.Viewport);
-            healthBar = new HealthBar();
             base.Initialize();
         }
         protected override void LoadContent()
@@ -83,9 +82,12 @@ namespace GameLorenzo
             enemies.Add(new Enemy(enemyTexture, new Vector2(700, 400), animations));
             enemies.Add(new Enemy(enemyTexture, new Vector2(900, 400), animations));
             
+            foreach (Enemy enemy in enemies) enemy.healthBar.Load(Content);
+            //foreach (HealthBar hb in healthBar) hb.Load(Content);
             foreach (Spike spike in spikes) spike.Load(Content);
             prisoner.Load(Content);
-            healthBar.Load(Content);
+            
+
             mapGen.LoadContent(player.level, map);
             player.Load(Content);
             key.Load(Content);
@@ -124,7 +126,7 @@ namespace GameLorenzo
             foreach (Enemy enemy in enemies)
             {
                 enemy.Update(player.Postion, gameTime);
-                healthBar.Update(enemy.postion, enemy.Health);
+                //foreach (HealthBar hb in healthBar) hb.Update(enemy.postion, enemy.Health);
             }
             //Hergenereer map als het level veranderd is
             RegenerateMap();
@@ -173,7 +175,7 @@ namespace GameLorenzo
             winning.Draw(spriteBatch, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
             foreach (Enemy enemy in enemies) {
                 enemy.Draw(spriteBatch);
-                healthBar.Draw(spriteBatch);
+                //foreach (HealthBar hb in healthBar) hb.Draw(spriteBatch);
             }
             
             foreach (Spike spike in spikes) spike.Draw(spriteBatch);
@@ -214,11 +216,11 @@ namespace GameLorenzo
                 {
                     int j = 1560;
                     spikes.Add(new Spike(new Vector2(i, j)));
-
                 }
                 enemies.Add(new Enemy(enemyTexture, new Vector2(120, 180), animations));
                 enemies.Add(new Enemy(enemyTexture, new Vector2(200, 180), animations));
                 enemies.Add(new Enemy(enemyTexture, new Vector2(280, 180), animations));
+                foreach (Enemy enemy in enemies) enemy.healthBar.Load(Content);
                 foreach (Spike spike in spikes) spike.Load(Content);
                 prisoner.Load(Content);
                 key.Load(Content);
